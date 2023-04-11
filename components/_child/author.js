@@ -4,8 +4,8 @@ export default function author() {
     return (
         <div className="author flex py-0">
             <Image src={"/images/profile.png"}
-            width={60}
-            height={60}
+            width={40}
+            height={40}
             className="rounded-full"
             ></Image>
             <div className="flex flex-col justify-center px-4">

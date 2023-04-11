@@ -2,7 +2,7 @@ import {ImFacebook2,ImGithub,ImLinkedin,ImTwitter} from 'react-icons/im'
 export default function footer() {
     return (
 
-        <footer className="bg-gray-50 bottom-0">
+        <footer className="bg-gray-50 mt-auto">
           <div className="container mx-auto flex justify-center py-12">
 <div className="py-5">
 <div className="flex gap-6 justify-center">

@@ -15,7 +15,7 @@ return(
         <Link href='/category/technology' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Technology</a>
         </Link>
-        <Link href='/category/lifestyle' legacyBehavior>
+        <Link href='/category/fashion and beauty' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Fashion and Beauty</a>
         </Link>
         <Link href='/category/lifestyle' legacyBehavior>
@@ -24,7 +24,7 @@ return(
         <Link href='/category/business' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Business</a>
         </Link>
-        <Link href='/category/Health_and_Fitness' legacyBehavior>
+        <Link href='/category/health and fitness' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Health and Fitness</a>
         </Link>
         <Link href='/category/photography' legacyBehavior>

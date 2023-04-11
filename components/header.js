@@ -1,6 +1,7 @@
 import {ImFacebook2,ImGithub,ImLinkedin,ImTwitter} from 'react-icons/im'
 import Link from 'next/link'
 import Image from 'next/image'
+import ProfileDrop from '@/components/_child/dropdown'
 export default function header(){
 return(
 <header className="bg-gray-50">
@@ -9,9 +10,12 @@ return(
     <div className="md:flex-none w-96 order-2 sm:order-1 flex justify-center py-4 sm:py-0">
      <input type="text" className="input-text" placeholder="Search..."/>
     </div>
-    <div className="shrink w-80 flex gap-5 sm:order-2">
+    <div className="shrink w-100 h-[100%] flex gap-5 sm:order-2">
         <Link href='/' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Home</a>
+        </Link>
+        <Link href='/myposts' legacyBehavior>
+        <a className="font-bold uppercase text-1xl">My Posts</a>
         </Link>
         <Link href='/about' legacyBehavior>
         <a className="font-bold uppercase text-1xl">About</a>
@@ -19,15 +23,10 @@ return(
         <Link href='/contact' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Contact</a>
         </Link>
-        <Image
-             src={"/images/profile.png"}
-             width={30}
-             height={20}
-             />
-     
+        <ProfileDrop/>     
     </div>
     </div>
-    <div className="w-96 order-3 flex justify-center">
+    <div className="w-96 hidden lg:block order-3 flex justify-center ">
     <div className="flex gap-3">
      <a><ImFacebook2/></a>
      <a><ImLinkedin/></a>

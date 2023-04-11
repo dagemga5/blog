@@ -6,7 +6,7 @@ import Section4 from '@/components/section4'
 export default function Home() {
   return (
    
-   <Format>
+   <Format >
     <Section1/>
     <Section2/>
     <Section3/>
