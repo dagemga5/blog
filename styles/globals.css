@@ -9,6 +9,9 @@
    @apply mt-1 block w-60 px-3 py-1 bg-white border-slate-300
    rounded-full text-sm shadow-sm placeholder-slate-300
 }
+/* .image{
+  @apply sm:w-[100%] m-auto  w-9/12 
+} */
 /* the new container */
 .swiper-container {
     position: relative;

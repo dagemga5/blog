@@ -6,30 +6,18 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import Format from "@/layout/format";
-export default function mypost(){
-
+import { getPostByAuthor } from '@/lib/helper';
+export default function mypost(props){
+const {data} = props
     return(
         <>
           <Format>
            <div className=" grid  md:grid-cols-2 lg:grid-cols-3  m-10 gap-10 items-center">
            {
-            userposts()
-           }
-           {
-            userposts()
-           }
-           {
-            userposts()
-           }
-           {
-            userposts()
-           }
-           {
-            userposts()
-           }
-           {
-            userposts()
-           }
+                    data.map((value, index) => {
+                        { return <div key={index}> <Userposts data={value}></Userposts></div> }
+                    })
+                }
 
         </div>
         </Format>
@@ -37,7 +25,7 @@ export default function mypost(){
     )
 }
 
-export function userposts() {
+export function Userposts({data}) {
   const handleDelete = () => {
     alert("I'm an alert");
   }
@@ -55,16 +43,15 @@ export function userposts() {
           <CardMedia
             component="img"
             height="140"
-            image="/images/imgs.jpg"
+            image={data.img}
             alt="green iguana"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              Lizard
+              {data.title}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over 6,000
-              species, ranging across all continents except Antarctica
+             {data.description}
             </Typography>
           </CardContent>
         </CardActionArea>
@@ -72,7 +59,7 @@ export function userposts() {
         <Button size="small" color="success" onClick={handleHide}>
             <AiFillEye></AiFillEye>Hide
           </Button>
-          <Button size="small" color="info" onClick={handleEdit}>
+          <Button size="small" color="info" onClick={() => {location.href = `/myposts/editpost/${data.id}`}}>
             <AiFillEdit></AiFillEdit>Edit
           </Button>
           <Button size="small" color="error" onClick={handleDelete}>
@@ -84,3 +71,24 @@ export function userposts() {
     );
   }
 
+  
+export async function getStaticProps({params}){
+  const posts = await getPostByAuthor("Author name")
+  return({
+    props:
+     { data : posts.map( item => {
+      return {
+          id: item.id.toString(),
+          title: item.title,
+          subtitle: item.subtitle,
+          category:item.category,
+          description:item.description,
+          img:item.img,
+          published:item.published,
+          author:item.author
+      }
+     }) },
+    
+  })
+  }
+  

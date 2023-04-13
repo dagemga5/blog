@@ -87,6 +87,7 @@ export default function MenuListComposition() {
                   >
                   <a href='/myprofile'> <MenuItem onClick={handleClose}>My Profile</MenuItem> </a> 
                   <a href='/myposts'>   <MenuItem onClick={handleClose}>My Post</MenuItem> </a> 
+                  <a href='/myposts/createpost'>   <MenuItem onClick={handleClose}>Create Post</MenuItem> </a>
                     <MenuItem onClick={handleClose}>Logout</MenuItem>
                   </MenuList>
                 </ClickAwayListener>

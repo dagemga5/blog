@@ -75,22 +75,22 @@ export default function section1() {
 
 
 function Slide({data}) {
-  const {id,title ,catagory,img,published ,author} = data
+  const {id,title ,category,img,published ,author} = data
   return (
     <div className="grid md:grid-cols-2 md:gap-10">
       <div className="image">
         <Image
           src={img || "/"}
           width={800}
-          height={800}
-          className="md:object-cover md:h-[100%]"
+          height={500}
+          className="sm:object-cover sm:h-[100%]"
         />
 
       </div>
       <div className="info flex justify-center flex-col">
         <div className="cat">
-          <Link href={`/blog/${id}`} legacyBehavior><a className="text-orange-600 hover:text-cyan-600">{catagory || "unknown"}</a></Link>
-          <Link href={`/blog/${id}`} legacyBehavior><a className="text-gray-600 hover:text-cyan-600"> {published || "unknown"}</a></Link>
+          <Link href={`/blog/${id}`} legacyBehavior><a className="text-orange-600 hover:text-cyan-600 uppercase">{category || "unknown"}</a></Link>
+          <Link href={`/blog/${id}`} legacyBehavior><a className="text-gray-600 hover:text-cyan-600 uppercase"> - {published || "unknown"}</a></Link>
         </div>
         <div className="title">
           <Link href={`/blog/${id}`} legacyBehavior><a className="text-2xl xl:text-4xl font-bold text-gray-800 hover:text-gray-400">

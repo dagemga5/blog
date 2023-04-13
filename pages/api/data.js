@@ -110,10 +110,7 @@ export default {
         subtitle:"For the things we have to learn before we can do them, we learn by doing them. ",
         category:"sport",
         img:"/images/imgs.jpg",
-        description:`It is often understood as awareness of facts or as practical skills,
-        and may also mean familiarity with objects or situations. Knowledge of facts,
-        also called propositional knowledge, is often defined as true belief that is distinct
-        from opinion or guesswork by virtue of justification. `,
+        description:`It is often understood as awareness of facts or as practical skills,and may also mean familiarity with objects or situations. Knowledge of facts,also called propositional knowledge, is often defined as true belief that is distinct from opinion or guesswork by virtue of justification. `,
         published: "April 1 , 2023",
         author:{
 name:"Author name",
