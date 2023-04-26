@@ -1,5 +1,6 @@
 import Input from '@mui/material/Input';
 import React from 'react';
+import FormData from 'form-data';
 import { useState } from "react";
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
@@ -13,37 +14,92 @@ import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import fetcher from "@/lib/fetcher"
 
-export default function blogedit({props}){
+
+export default function blogcreate({props}){
     
-  const [newcategory, setNewCategory] = React.useState();
+  const [category, setCategory] = React.useState();
   const [titles, setTitle] = React.useState();
   const [subtitles, setSubTitle] = React.useState();
   const [image, setImage] =React.useState(null);
+  const [description, SetDescription] =React.useState(null);
   const [createObjectURL, setCreateObjectURL] = React.useState(null);
-  
-  const uploadToClient = (event) => {
+  var basei;
+
+ 
+  const uploadToClient = async(event) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0];
       console.log(i)
-      setImage(i);
-      
       setCreateObjectURL(URL.createObjectURL(i));
-     
-    }
+      basei = await convertBase64(i);
+      setImage(basei);
+  };
+  }
+  const convertBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+        const fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = () => {
+            resolve(fileReader.result);
+        };
+
+        fileReader.onerror = (error) => {
+            reject(error);
+        };
+    });
+};
+
+  const handler = (e) => {
+    setTitle(e.target.value);
   };
 
   const handleChange = (event) => {
-    setNewCategory(event.target.value);
+    setCategory(event.target.value);
   };
+  const  handleSubmit = async() =>{
+    let  body = new FormData();
+    body.append("1", titles)
+    body.append("2",description)
+    body.append( "3", subtitles)
+    body.append("4" , image)
+    let data = {content : body}
+  //   for (var key of body.entries()) {
+  //     console.log(key[0] + ', ' + key[1]);
+  // }
+  const response = await fetch("/api/posts", {
+    method: "POST",
+    data
+  });
+  console.log(response.body)
+}
+
+  const uploadToServer = async () => {
+    let  body = new FormData();
+    console.log("file" , image)
+    body.append("file", image);
+    for (var key of body.entries()) {
+      console.log(key[0] + ', ' + key[1]);
+  }
+    const response = await fetch("/api/posts", {
+      method: "POST",
+      body
+    });
+    console.log(response)
+  };
+  
     return(
         <section className="container  mx-auto md:px-20 ">
-        <h1 className='font-bold text-4xl uppercase py-12 text-center'>Edit content</h1>
+        <h1 className='font-bold text-4xl uppercase py-12 text-center'>Create content</h1>
         <div className="flex flex-col gap-5 w-auto8 ">
+          
         <TextField
           required
           id="outlined-required"
           label="Title"
+          value={titles}
           defaultValue=""
+          onChange={handler}
          
         />
         <TextField
@@ -51,7 +107,9 @@ export default function blogedit({props}){
           label="Subtitle"
           multiline
           maxRows={4}
+          value={subtitles}
           defaultValue=""
+          onChange={(e) => {setSubTitle(e.target.value)}}
         />
           <TextField
           id="outlined-multiline-static"
@@ -59,6 +117,8 @@ export default function blogedit({props}){
           multiline
           rows={4}
           defaultValue=""
+          value={description}
+          onChange={(e) => {SetDescription(e.target.value)}}
         />
             <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
@@ -68,7 +128,7 @@ export default function blogedit({props}){
           id="demo-simple-select"
           label="Category"
           defaultValue=""
-          onChange={handleChange}
+          onChange={(e) => {setCategory(e.target.value)}}
         >
           <MenuItem value={1}>Food</MenuItem>
           <MenuItem value={2}>Sport</MenuItem>
@@ -89,7 +149,7 @@ export default function blogedit({props}){
             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
             </> : <img src={createObjectURL} width={350} height={350} />  }
         </div>
-        <input id="dropzone-file" type="file" class="hidden" onChange={uploadToClient} />
+        <input id="dropzone-file" type="file" class="hidden" onChange={(e) => {uploadToClient(e)}} />
     </label>
 </div> 
     {/* <div class="flex items-center justify-center w-full">
@@ -105,10 +165,12 @@ export default function blogedit({props}){
     {/* <input  class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="file_input" type="file" onChange={uploadToClient}/>
     <img src={createObjectURL || props.img} /> */}
         
-        <Button variant="outlined" size="medium">
+        
+        <Button  variant="outlined" size="medium" onClick={handleSubmit}>
           Submit
         </Button>
       
+    
 </div>
 
     </section>

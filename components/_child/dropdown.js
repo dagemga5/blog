@@ -7,6 +7,7 @@ import Popper from '@mui/material/Popper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
+import {AiOutlineDown} from 'react-icons/ai'
 import Image from 'next/image';
 
 export default function MenuListComposition() {
@@ -46,7 +47,8 @@ export default function MenuListComposition() {
   return (
    
     <Stack direction="row" spacing={2}>
-      <div>
+      <div className='border-2 border-green-200 rounded-full'>
+      
         <Button
           ref={anchorRef}
           id="composition-button"
@@ -54,13 +56,17 @@ export default function MenuListComposition() {
           aria-expanded={open ? 'true' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
-          className="p-0"
+          className="p-0 "
         >
            <Image src={"/images/profile.png"}
             width={30}
             height={30}
-            ></Image>
+            >
+            </Image>
+            
         </Button>
+       
+       
         <Popper
           open={open}
           anchorEl={anchorRef.current}

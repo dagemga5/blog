@@ -1,4 +1,5 @@
 import {ImFacebook2,ImGithub,ImLinkedin,ImTwitter} from 'react-icons/im'
+import {AiOutlineDown} from 'react-icons/ai'
 import Link from 'next/link'
 import Image from 'next/image'
 import ProfileDrop from '@/components/_child/dropdown'
@@ -10,7 +11,7 @@ return(
     <div className="md:flex-none w-96 order-2 sm:order-1 flex justify-center py-4 sm:py-0">
      <input type="text" className="input-text" placeholder="Search..."/>
     </div>
-    <div className="shrink w-100 h-[100%] flex gap-5 sm:order-2">
+    <div className="shrink w-100 h-[100%] flex gap-5 sm:order-2 align-middle items-center">
         <Link href='/' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Home</a>
         </Link>
@@ -23,7 +24,12 @@ return(
         <Link href='/contact' legacyBehavior>
         <a className="font-bold uppercase text-1xl">Contact</a>
         </Link>
-        <ProfileDrop/>     
+        {/* <button onClick={() => swiperRef.current?.slidePrev()} className='swiper-button-prev hidden lg:inline'  ><AiOutlineLeft size={50}/></button> */}
+        
+        <ProfileDrop className=''/>   
+       
+        
+         
     </div>
     </div>
     <div className="w-96 hidden lg:block order-3 flex justify-center ">

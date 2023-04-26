@@ -4,6 +4,7 @@ import Author from "./_child/author"
 import fetcher from "@/lib/fetcher"
 import Spinner from "./_child/spinner";
 import Error from "./_child/error";
+import PaginationRounded from "./_child/pagination";
 export default function section2() {
  
     const  {data , isLoading , isError} =  fetcher("api/posts")
@@ -21,7 +22,11 @@ export default function section2() {
                     <Post data ={value} key = {index}></Post>                    
                 ))
                }
+               
             </div>
+            <div className='flex text-center justify-center'><PaginationRounded /></div>
+            
+          
 
 
         </section>
